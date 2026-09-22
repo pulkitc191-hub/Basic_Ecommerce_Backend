@@ -37,7 +37,7 @@ public class ProductService {
         product.setDescription(productdto.getDescription());
 
         if(productdto.getCategoryId() != null){
-            Category category = categoryRepository.findById(product.getCategory().getId()).orElseThrow(() -> new RuntimeException("Cannot find category"));
+            Category category = categoryRepository.findById(productdto.getCategoryId()).orElseThrow(() -> new RuntimeException("Cannot find category"));
             product.setCategory(category);
         }
         Product savedProduct = productRepository.save(product);
@@ -67,5 +67,9 @@ public class ProductService {
         Product existingProduct = productRepository.findById(id).orElseThrow(() -> new ResourceNotFound("Product not found"));
         productRepository.delete(existingProduct);
         return productMapper.toDto(existingProduct);
+    }
+
+    public Page<Productdto> searchProduct(String keyword, Pageable pageable){
+        return productRepository.findByNameContainingIgnoreCase(keyword,pageable).map(productMapper::toDto);
     }
 }

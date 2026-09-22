@@ -19,7 +19,7 @@ public class Productdto {
 
     @NotNull(message = "Product price is required")
     @Positive(message = "Product price must be greater than zero")
-    private double price;
+    private Double price;
 
     @NotNull(message = "Product quantity is required")
     @Positive(message = "Product quantity must be greater than zero")

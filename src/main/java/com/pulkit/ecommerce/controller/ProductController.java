@@ -43,4 +43,9 @@ public class ProductController {
     public Productdto deleteProduct(@PathVariable Long id) {
         return productService.deleteProduct(id);
     }
+
+    @GetMapping("/search")
+    public Page<Productdto> searchProduct(@RequestParam String keyword, Pageable pageable){
+        return productService.searchProduct(keyword, pageable);
+    }
 }
