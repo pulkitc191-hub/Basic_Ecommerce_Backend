@@ -11,9 +11,11 @@ public class CartMapper {
     public Cartdto todto(Cart cart){
         Cartdto cartdto = new Cartdto();
         cartdto.setId(cart.getId());
-        List<CartItemdto> items = cart.getItems().stream().map(this :: toCartItemdto).toList();
-
+        List<CartItemdto> items = cart.getCartItem().stream().map(this :: toCartItemdto).toList();
         cartdto.setItems(items);
+
+        Double totalPrice = cart.getCartItem().stream().mapToDouble(item -> item.getProduct().getPrice() * item.getQuantity()).sum();
+        cartdto.setTotalPrice(totalPrice);
         return cartdto;
     }
 

@@ -29,9 +29,14 @@ public class CartController {
         return cartService.getCart(cartId);
     }
 
+    @DeleteMapping("/{cartId}/items/{cartItemId}")
     public Cartdto removeItemFromCart(@PathVariable("cartId") Long cartId, @PathVariable("cartItemId") Long cartItemId){
+        return cartService.removeItemFromCart(cartId, cartItemId);
+    }
 
-    return cartService.removeItemFromCart(cartId, cartItemId);
+    @PutMapping("/{cartId}/items/{cartItemId}")
+    public Cartdto updateItemInCart(@PathVariable("cartId") Long cartId, @PathVariable("cartItemId") Long cartItemId, @RequestParam Integer quantity){
+        return cartService.updateCartItemQuantity(cartId, cartItemId, quantity);
     }
 
 }

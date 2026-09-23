@@ -3,12 +3,16 @@ package com.pulkit.ecommerce.dto;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
 @Setter
-public class Cartdto {
+public class Orderdto {
     private Long id;
-    private List<CartItemdto> items;
+    private LocalDateTime orderDate;
+    private String status;
     private Double totalPrice;
+    private List<OrderItemsdto> items;
 }
+

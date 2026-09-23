@@ -74,5 +74,22 @@ public class CartService {
     return cartMapper.todto(cart);
     }
 
+    public Cartdto updateCartItemQuantity(Long cartId, Long cartItemId, Integer quantity){
+        Cart cart = cartRepository.findById(cartId).orElseThrow(() -> new RuntimeException("Cart not found"));
+        CartItem cartItem = cartitemRepository.findById(cartItemId).orElseThrow(() -> new RuntimeException("Cart item not found"));
+
+        if(!cartItem.getCart().getId().equals(cart.getId())){
+            throw new ResourceNotFound("Cart item does not belong to this cart");
+        }
+
+        if(quantity <= 0){
+            throw new IllegalArgumentException("Quantity must be greater than zero");
+        }
+
+        cartItem.setQuantity(quantity);
+        cartitemRepository.save(cartItem);
+
+        return cartMapper.todto(cart);
+    }
 
 }
