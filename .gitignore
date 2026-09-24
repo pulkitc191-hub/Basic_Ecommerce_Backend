@@ -31,3 +31,20 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Node / React ###
+Frontend/node_modules/
+Frontend/dist/
+Frontend/.vite/
+
+### Environment files ###
+.env
+.env.*
+!.env.example
+
+### Logs ###
+*.log
+
+### OS ###
+.DS_Store
+Thumbs.db
